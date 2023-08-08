@@ -39,7 +39,7 @@ read.vcf <- function(fname, front=args$frontclip, back=args$backclip) {
     filter(Position > front,
            Position < back) %>%
     mutate(Frequency=as.numeric(str_extract(Info, "(?<=AF=)[0-9\\.]+")),
-           SNV=paste0(Position, "-", Ref, "-", Alt),
+           SNV=paste0(Segment, "-", Position, "-", Ref, "-", Alt),
            Filename=fname) %>%
     select(Filename, SNV, Frequency)
 }
